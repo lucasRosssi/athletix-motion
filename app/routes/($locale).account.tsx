@@ -27,6 +27,7 @@ export async function loader({context}: LoaderFunctionArgs) {
 
 export default function AccountLayout() {
   const {customer} = useLoaderData<typeof loader>();
+  const {firstName, lastName, addresses} = customer;
 
   const heading = customer
     ? customer.firstName
@@ -39,6 +40,12 @@ export default function AccountLayout() {
       <h1>{heading}</h1>
       <br />
       <AccountMenu />
+      <div>
+        <h2>Account Details</h2>
+        <p>First Name: {firstName}</p>
+        <p>Last Name: {lastName}</p>
+        <p>Phone Number: {addresses.nodes[0].phoneNumber}</p>
+      </div>
       <br />
       <br />
       <Outlet context={{customer}} />
